@@ -1,0 +1,18 @@
+.footer {
+    width: 100%;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #731a86;
+    background: linear-gradient(to right, #2a0845, #6441A5);
+
+    margin-top: 40px;
+}
+
+.footer p {
+    font-size: 12px;
+    color: white;
+    margin: 0;
+}

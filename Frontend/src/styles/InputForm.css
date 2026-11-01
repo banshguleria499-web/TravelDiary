@@ -1,0 +1,51 @@
+.form {
+  position: relative;
+  background: cyan;
+}
+
+.outer{
+    /* background: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 100%;
+    
+}
+
+.form-header {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.close-btn {
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+.login-para{
+    color: rgb(53, 53, 53);
+    font-size: 14px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.login-para:hover{
+    color: blue;
+}
+
+.form input{
+    height: 25px;
+    width: 100%;
+}

@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  margin-top: 30px;
+}
+
+.add-place {
+  width: 100%;
+}
+
+.place {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footer {
+  width: 100%;
+  min-height: 40px;
+  color: white;
+  background: linear-gradient(to right, #2a0845, #6441A5);
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px 0;
+  font-size: 12px;
+}
+
+.outer-container {
+  width: 70%;
+  margin: 3rem auto;
+}
+
+.outer-container .profile {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.outer-container .title {
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+
+.outer-container .place-details {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
