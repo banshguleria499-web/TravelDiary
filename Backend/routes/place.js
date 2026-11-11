@@ -1,3 +1,4 @@
+
 const express = require("express");
 const router = express.Router();
 
@@ -8,24 +9,32 @@ const {
     addPlace,
     editPlace,
     deletePlace,
+    toggleLike,
+    addComment,
     upload
 } = require("../controller/place");
 
 const verifyToken = require("../middleware/auth");
 const optionalAuth = require("../middleware/optionalAuth");
 
-// Public places for Explore / Feed
 router.get("/", getPlaces);
 
-// Logged-in user's own places (public + private)
 router.get("/mine", verifyToken, getMyPlaces);
 
-// Single place details
-// Public place: anyone can view
-// Private place: only owner can view
+router.post(
+    "/:id/like",
+    verifyToken,
+    toggleLike
+);
+
+router.post(
+    "/:id/comment",
+    verifyToken,
+    addComment
+);
+
 router.get("/:id", optionalAuth, getPlace);
 
-// Add a place
 router.post(
     "/",
     verifyToken,
@@ -33,7 +42,6 @@ router.post(
     addPlace
 );
 
-// Edit a place
 router.put(
     "/:id",
     verifyToken,
@@ -41,7 +49,6 @@ router.put(
     editPlace
 );
 
-// Delete a place
 router.delete(
     "/:id",
     verifyToken,

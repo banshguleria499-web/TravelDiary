@@ -1,25 +1,22 @@
+
 const Places = require("../models/place");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-// Ensure images folder exists
 const imagesPath = path.join(__dirname, "../public/images");
 
 if (!fs.existsSync(imagesPath)) {
     fs.mkdirSync(imagesPath, { recursive: true });
 }
 
-// Configure image storage
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, imagesPath);
     },
-
     filename: function (req, file, cb) {
         const uniqueName =
-            Date.now() +
-            "-" +
+            Date.now() + "-" +
             Math.round(Math.random() * 1e9) +
             path.extname(file.originalname);
 
@@ -27,7 +24,6 @@ const storage = multer.diskStorage({
     }
 });
 
-// Accept image files only
 const fileFilter = (req, file, cb) => {
     if (file.mimetype.startsWith("image/")) {
         cb(null, true);
@@ -45,8 +41,7 @@ const upload = multer({
     }
 });
 
-
-// Get public places for Explore / Feed
+// GET PUBLIC PLACES
 const getPlaces = async (req, res) => {
     try {
         const places = await Places.find({
@@ -55,14 +50,11 @@ const getPlaces = async (req, res) => {
 
         return res.json(places);
     } catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
+        return res.status(500).json({ message: err.message });
     }
 };
 
-
-// Get single place
+// GET SINGLE PLACE
 const getPlace = async (req, res) => {
     try {
         const place = await Places.findById(req.params.id)
@@ -74,12 +66,10 @@ const getPlace = async (req, res) => {
             });
         }
 
-        // Public places can be viewed by everyone
         if (place.isPublic) {
             return res.json(place);
         }
 
-        // Private places can only be viewed by their owner
         const userId = req.user?.id;
 
         if (
@@ -93,35 +83,25 @@ const getPlace = async (req, res) => {
         }
 
         return res.json(place);
-
     } catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
+        return res.status(500).json({ message: err.message });
     }
 };
 
-
-// Get logged-in user's places (public + private)
+// GET MY PLACES
 const getMyPlaces = async (req, res) => {
     try {
         const places = await Places.find({
             createdBy: req.user.id
         }).populate("createdBy", "userName email");
 
-        return res.json({
-            places: places
-        });
-
+        return res.json({ places });
     } catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
+        return res.status(500).json({ message: err.message });
     }
 };
 
-
-// Add a place
+// ADD PLACE
 const addPlace = async (req, res) => {
     try {
         const {
@@ -141,8 +121,6 @@ const addPlace = async (req, res) => {
             ? req.files.map(file => file.filename)
             : [];
 
-        // Checkbox sends "true" or "false" as a string
-        // If checkbox is unchecked, it becomes false
         const isPublic = req.body.isPublic !== "false";
 
         const newPlace = await Places.create({
@@ -156,16 +134,12 @@ const addPlace = async (req, res) => {
         });
 
         return res.status(201).json(newPlace);
-
     } catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
+        return res.status(500).json({ message: err.message });
     }
 };
 
-
-// Edit a place
+// EDIT PLACE
 const editPlace = async (req, res) => {
     try {
         const {
@@ -183,7 +157,6 @@ const editPlace = async (req, res) => {
             });
         }
 
-        // Only the owner can edit the place
         if (
             place.createdBy.toString() !== req.user.id.toString()
         ) {
@@ -192,12 +165,11 @@ const editPlace = async (req, res) => {
             });
         }
 
-        // Keep existing photos and add newly uploaded photos
         const newImages = req.files
             ? req.files.map(file => file.filename)
             : [];
 
-        const images = [
+        place.images = [
             ...(place.images || []),
             ...newImages
         ];
@@ -207,26 +179,19 @@ const editPlace = async (req, res) => {
         place.experience = experience || place.experience;
         place.category = category ?? place.category;
 
-        // Update visibility only if field was sent
         if (req.body.isPublic !== undefined) {
             place.isPublic = req.body.isPublic !== "false";
         }
 
-        place.images = images;
-
         await place.save();
 
         return res.json(place);
-
     } catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
+        return res.status(500).json({ message: err.message });
     }
 };
 
-
-// Delete a place
+// DELETE PLACE
 const deletePlace = async (req, res) => {
     try {
         const place = await Places.findById(req.params.id);
@@ -237,7 +202,6 @@ const deletePlace = async (req, res) => {
             });
         }
 
-        // Only the owner can delete the place
         if (
             place.createdBy.toString() !== req.user.id.toString()
         ) {
@@ -248,17 +212,92 @@ const deletePlace = async (req, res) => {
 
         await Places.findByIdAndDelete(req.params.id);
 
-        return res.json({
-            status: "ok"
-        });
-
+        return res.json({ status: "ok" });
     } catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
+        return res.status(500).json({ message: err.message });
     }
 };
 
+// LIKE / UNLIKE PLACE
+const toggleLike = async (req, res) => {
+    try {
+        const place = await Places.findById(req.params.id);
+
+        if (!place) {
+            return res.status(404).json({
+                message: "Place not found"
+            });
+        }
+
+        const userId = req.user.id;
+
+        const alreadyLiked = place.likes.some(
+            id => id.toString() === userId.toString()
+        );
+
+        if (alreadyLiked) {
+            place.likes = place.likes.filter(
+                id => id.toString() !== userId.toString()
+            );
+        } else {
+            place.likes.push(userId);
+        }
+
+        await place.save();
+
+        return res.json({
+            liked: !alreadyLiked,
+            likesCount: place.likes.length
+        });
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+};
+
+// ADD COMMENT
+const addComment = async (req, res) => {
+    try {
+        const { text } = req.body;
+
+        if (!text || !text.trim()) {
+            return res.status(400).json({
+                message: "Comment cannot be empty"
+            });
+        }
+
+        const place = await Places.findById(req.params.id);
+
+        if (!place) {
+            return res.status(404).json({
+                message: "Place not found"
+            });
+        }
+
+        const User = require("../models/user");
+        const user = await User.findById(req.user.id);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        place.comments.push({
+            user: user._id,
+            userName: user.userName,
+            text: text.trim()
+        });
+
+        await place.save();
+
+        return res.status(201).json({
+            message: "Comment added successfully",
+            comments: place.comments
+        });
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+};
 
 module.exports = {
     getPlaces,
@@ -267,5 +306,7 @@ module.exports = {
     addPlace,
     editPlace,
     deletePlace,
+    toggleLike,
+    addComment,
     upload
 };

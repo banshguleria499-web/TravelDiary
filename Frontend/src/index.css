@@ -1,33 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
-*{
- margin:0;
- padding:0;
- box-sizing:border-box;
+:root {
+  font-family: "DM Sans", sans-serif;
+  color: #1f2b24;
+  background: #f7f5ee;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-*::selection{
-  background:#f28ef6;
-  color:rgb(0, 0, 0);
-}
-
-body{
-  /* color: white; */
- background: #485563;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  overflow-x: hidden;
-
-  font-family: "Quantico", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-html,
-body,
-#root {
-  min-height: 100%;
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::selection {
+  background: #d9b39e;
+  color: #17382c;
+}
+
+html, body, #root {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "DM Sans", sans-serif;
+  background: #f7f5ee;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid rgba(200, 120, 85, .45);
+  outline-offset: 3px;
 }
 
 .app-layout {
@@ -36,6 +48,4 @@ body,
   flex-direction: column;
 }
 
-.main-content {
-  flex: 1;
-}
+.main-content { flex: 1; }

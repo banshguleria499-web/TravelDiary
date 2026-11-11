@@ -1,0 +1,631 @@
+
+.shimla-page {
+  background: #f7f5ef;
+  color: #214b3b;
+  font-family: "DM Sans", sans-serif;
+  overflow: hidden;
+}
+
+.shimla-page button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* HERO */
+
+.shimla-hero {
+  height: 650px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.shimla-hero > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  inset: 0;
+}
+
+.shimla-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(12, 34, 26, 0.85),
+    rgba(12, 34, 26, 0.35),
+    rgba(12, 34, 26, 0.05)
+  );
+}
+
+.shimla-hero-content {
+  position: absolute;
+  left: 9%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 620px;
+}
+
+.shimla-eyebrow,
+.shimla-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #cc805d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.shimla-eyebrow {
+  color: #f3c4a9;
+}
+
+.shimla-hero-content h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(65px, 9vw, 110px);
+  font-weight: 500;
+  line-height: 0.98;
+  margin: 30px 0;
+}
+
+.shimla-hero-content h1 em {
+  color: #e5a17d;
+  font-weight: 500;
+}
+
+.shimla-hero-content p {
+  max-width: 440px;
+  color: #eeeae2;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.shimla-hero-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+  padding: 16px 23px;
+  border: 0;
+  border-radius: 3px;
+  background: #f7f5ef;
+  color: #214b3b;
+  transition: 0.25s;
+}
+
+.shimla-hero-button:hover {
+  background: #c97953;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.shimla-hero-bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 9%;
+  right: 9%;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* INTRO */
+
+.shimla-intro {
+  padding: 100px 9%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.shimla-intro h2,
+.shimla-section-heading h2,
+.shimla-food-heading h2,
+.shimla-market-heading h2,
+.shimla-itinerary-intro h2,
+.shimla-map-heading h2,
+.shimla-community h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.15;
+  font-weight: 500;
+  margin-top: 18px;
+}
+
+.shimla-intro h2 em,
+.shimla-section-heading h2 em,
+.shimla-food-heading h2 em,
+.shimla-market-heading h2 em,
+.shimla-itinerary-intro h2 em,
+.shimla-map-heading h2 em,
+.shimla-community h2 em {
+  color: #c97953;
+}
+
+.shimla-intro > p {
+  color: #788078;
+  line-height: 2;
+  font-size: 14px;
+}
+
+/* ATTRACTIONS */
+
+.shimla-attractions {
+  padding: 90px 9%;
+  background: #eeece4;
+}
+
+.shimla-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 45px;
+}
+
+.shimla-section-heading p,
+.shimla-food-heading > p,
+.shimla-map-heading > p {
+  color: #788078;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 13px;
+}
+
+.shimla-section-count {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #c97953;
+}
+
+.shimla-attraction-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.shimla-attraction-card {
+  background: #faf9f4;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.shimla-attraction-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(24, 60, 48, 0.12);
+}
+
+.shimla-attraction-image {
+  height: 230px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimla-attraction-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.shimla-attraction-card:hover img {
+  transform: scale(1.07);
+}
+
+.shimla-attraction-image > span {
+  position: absolute;
+  bottom: 15px;
+  right: 18px;
+  color: white;
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+}
+
+.shimla-attraction-info {
+  padding: 25px;
+}
+
+.shimla-card-category {
+  color: #c97953;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.shimla-attraction-info h3,
+.shimla-food-card h3,
+.shimla-market-card h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 12px 0;
+}
+
+.shimla-attraction-info p,
+.shimla-food-card p,
+.shimla-market-card p {
+  color: #788078;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* FOOD */
+
+.shimla-food {
+  padding: 100px 9%;
+}
+
+.shimla-food-heading {
+  max-width: 650px;
+  margin-bottom: 45px;
+}
+
+.shimla-food-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.shimla-food-card {
+  padding: 30px 24px;
+  background: #eeece4;
+  border-radius: 5px;
+  transition: 0.25s;
+}
+
+.shimla-food-card:hover {
+  transform: translateY(-5px);
+  background: #e7e3d8;
+}
+
+.shimla-food-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #c97953;
+  background: #f7f5ef;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.shimla-food-card > span:nth-child(2) {
+  color: #c97953;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.shimla-disclaimer {
+  color: #899188;
+  font-size: 11px;
+  margin-top: 25px;
+}
+
+/* MARKETS */
+
+.shimla-markets {
+  padding: 85px 9%;
+  background: #214b3b;
+  color: white;
+}
+
+.shimla-market-heading {
+  margin-bottom: 40px;
+}
+
+.shimla-market-heading .shimla-kicker {
+  color: #e5a17d;
+}
+
+.shimla-market-heading h2 {
+  color: white;
+}
+
+.shimla-market-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.shimla-market-card {
+  position: relative;
+  padding: 30px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: 0.25s;
+}
+
+.shimla-market-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-5px);
+}
+
+.shimla-market-number {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  color: #e5a17d;
+  font-family: "Playfair Display", serif;
+}
+
+.shimla-market-card > svg {
+  color: #e5a17d;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.shimla-market-card h3 {
+  color: white;
+}
+
+.shimla-market-card p {
+  color: #d1dcd5;
+}
+
+/* ITINERARY */
+
+.shimla-itinerary {
+  padding: 100px 9%;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 80px;
+}
+
+.shimla-itinerary-intro > p {
+  color: #788078;
+  line-height: 1.9;
+  font-size: 13px;
+  margin-top: 22px;
+}
+
+.shimla-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  color: #c97953;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.shimla-itinerary-item {
+  display: grid;
+  grid-template-columns: 65px 1fr 25px;
+  gap: 18px;
+  padding: 27px 0;
+  border-bottom: 1px solid #e5e1d8;
+}
+
+.shimla-day-number {
+  font-family: "Playfair Display", serif;
+  color: #c97953;
+  font-size: 28px;
+}
+
+.shimla-day-content > span {
+  color: #c97953;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.shimla-day-content h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.shimla-day-content ul {
+  padding-left: 18px;
+  color: #788078;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.shimla-day-arrow {
+  color: #c97953;
+}
+
+/* MAP */
+
+.shimla-map-section {
+  padding: 85px 9%;
+  background: #eeece4;
+}
+
+.shimla-map-heading {
+  margin-bottom: 35px;
+}
+
+.shimla-map-frame {
+  height: 430px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 5px solid #faf9f4;
+}
+
+.shimla-map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.shimla-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  color: #214b3b;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.shimla-map-link:hover {
+  color: #c97953;
+}
+
+/* COMMUNITY */
+
+.shimla-community {
+  margin: 85px 9%;
+  padding: 55px;
+  background: #214b3b;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+}
+
+.shimla-community .shimla-kicker {
+  color: #e5a17d;
+}
+
+.shimla-community h2 {
+  font-size: clamp(35px, 4vw, 48px);
+}
+
+.shimla-community h2 em {
+  color: #e5a17d;
+}
+
+.shimla-community p {
+  max-width: 470px;
+  margin-top: 15px;
+  color: #d1dcd5;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.shimla-community-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.shimla-community-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 20px;
+  border: 1px solid #f7f5ef;
+  border-radius: 3px;
+  background: #f7f5ef;
+  color: #214b3b;
+  transition: 0.25s;
+}
+
+.shimla-community-actions button:hover {
+  background: #c97953;
+  border-color: #c97953;
+  color: white;
+}
+
+.shimla-community-actions .shimla-secondary-button {
+  background: transparent;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .shimla-attraction-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shimla-food-grid,
+  .shimla-market-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shimla-intro,
+  .shimla-itinerary {
+    gap: 40px;
+  }
+
+  .shimla-community {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 650px) {
+  .shimla-hero {
+    height: 570px;
+  }
+
+  .shimla-hero-content {
+    left: 7%;
+    right: 7%;
+  }
+
+  .shimla-hero-content h1 {
+    font-size: 65px;
+  }
+
+  .shimla-hero-bottom {
+    left: 7%;
+    right: 7%;
+    font-size: 8px;
+  }
+
+  .shimla-intro,
+  .shimla-itinerary {
+    grid-template-columns: 1fr;
+    padding: 65px 7%;
+  }
+
+  .shimla-attractions,
+  .shimla-food,
+  .shimla-markets,
+  .shimla-map-section {
+    padding: 65px 7%;
+  }
+
+  .shimla-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .shimla-attraction-grid,
+  .shimla-food-grid,
+  .shimla-market-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shimla-attraction-image {
+    height: 250px;
+  }
+
+  .shimla-map-frame {
+    height: 320px;
+  }
+
+  .shimla-community {
+    margin: 60px 7%;
+    padding: 30px;
+  }
+
+  .shimla-community-actions {
+    width: 100%;
+  }
+}
